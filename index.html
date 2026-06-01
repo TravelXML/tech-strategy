@@ -61,7 +61,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Premium Apple Typography Overhaul */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -70,6 +71,8 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -110,6 +113,7 @@
             font-weight: 600;
             line-height: 1.4;
             margin: 0 0 16px 0;
+            letter-spacing: -0.01em;
         }
 
         .term-box {
@@ -188,22 +192,70 @@
             width: 20px;
         }
 
-        /* Right Side Frame Layout + Seamless Cropping Logic */
+        /* Right Panel Container Styling */
+        .right-panel-workspace {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            background: transparent;
+        }
+
+        /* Google Calendar Interactive Frame Box with Bottom Crop */
         .booking-section {
             width: 100%;
-            height: 590px; /* Snaps the viewport perfectly above the Google Footer element */
+            height: 590px; /* Cuts panel off cleanly above native footer lines */
             background: #ffffff; 
-            overflow: hidden; /* Hard crops out anything extended outside the height bounds */
+            overflow: hidden; 
             position: relative;
         }
 
         .booking-section iframe {
             width: 100%;
-            height: 720px; /* Keeps the frame tall internally so the main core schedule grid functions smoothly */
+            height: 720px; 
             border: none;
             position: absolute;
             top: 0;
             left: 0;
+        }
+
+        /* Apple-Style Lower Ticker Content Bar */
+        .lower-ticker-bar {
+            padding: 24px 30px;
+            background: rgba(15, 23, 42, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ticker-heading {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-color);
+        }
+
+        .ticker-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+        }
+
+        .ticker-keyword {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ticker-keyword::before {
+            content: "•";
+            color: rgba(56, 189, 248, 0.5);
+            font-size: 1.2rem;
         }
 
         @media (max-width: 950px) {
@@ -247,7 +299,7 @@
                 <!-- Directories with Official Amazon Author Store Endpoint -->
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/the-startup-cto/" target="_blank" rel="noopener" class="social-badge">👔 LinkedIn</a>
-                    <a href="https://github.com/TravelXML" target="_blank" rel="noopener" class="travelxml-github-link social-badge">💻 GitHub</a>
+                    <a href="https://github.com/TravelXML" target="_blank" rel="noopener" class="social-badge">💻 GitHub</a>
                     <a href="https://ultimatesystemsdesign.medium.com/" target="_blank" rel="noopener" class="social-badge">✍️ Medium</a>
                     <a href="https://www.amazon.com/stores/Sapan-Kumar-Mohanty/author/B0GYDR1ZL6/allbooks?ccs_id=732d455f-4b22-4f91-b33c-5eac8aa739e9" target="_blank" rel="noopener" class="social-badge">📚 Amazon Store</a>
                 </div>
@@ -265,12 +317,26 @@
             </footer>
         </section>
 
-        <!-- Interactive Google Calendar Booking Space with Absolute CSS Crop Engine -->
-        <section class="booking-section" aria-label="Strategy Session Booking Interface">
-            <!-- Google Calendar Appointment Scheduling begin -->
-            <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ105cmw9vm7VWg65XoGYin8RhJ9A5ify24e3xu0Nm-oOinm6Ja81L4gvCtWUJMNRU2MLtYbTc8v?gv=true" title="Sapan Kumar Mohanty Executive Meeting Portal" frameborder="0"></iframe>
-            <!-- end Google Calendar Appointment Scheduling -->
-        </section>
+        <!-- Right Composite Panel Interface -->
+        <div class="right-panel-workspace">
+            <!-- Upper Section: Interactive Google Calendar Frame -->
+            <section class="booking-section" aria-label="Strategy Session Booking Interface">
+                <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ105cmw9vm7VWg65XoGYin8RhJ9A5ify24e3xu0Nm-oOinm6Ja81L4gvCtWUJMNRU2MLtYbTc8v?gv=true" title="Sapan Kumar Mohanty Executive Meeting Portal" frameborder="0"></iframe>
+            </section>
+
+            <!-- Lower Section: Apple-Style Core Focus Ticker -->
+            <footer class="lower-ticker-bar">
+                <div class="ticker-heading">Core Advisory Domain Expertise</div>
+                <div class="ticker-items">
+                    <span class="ticker-keyword">Enterprise Architecture</span>
+                    <span class="ticker-keyword">High-Scale Platforms</span>
+                    <span class="ticker-keyword">Digital Transformation</span>
+                    <span class="ticker-keyword">GenAI & Agentic Workflows</span>
+                    <span class="ticker-keyword">IT Governance</span>
+                    <span class="ticker-keyword">Cloud-Native Microservices</span>
+                </div>
+            </footer>
+        </div>
     </main>
 
 </body>
